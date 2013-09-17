@@ -4,21 +4,48 @@
     <script src="jquery.js"></script>
     <script src="data_generator.js"></script>
     <link rel="stylesheet" type="text/css" href="twitt.css" />
-    <link rel="icon" type="image/x-icon" href="res/favicon.ico" />
+    <link rel="icon" type="image/x-icon" href="favicon.ico" />
   </head>
   <body>
     <script>
+
+      var date = new Date
 
       var stripe = "#D8D8BE"
       var oldTweets = 0;
 
       function update(){
         var index = streams.home.length - 1 - oldTweets;
-        console.log(streams.home.length - 1 + ", " + oldTweets + ", " + index);
+
+        // -- Getting and formatting date and time.
+        var d = new Date();
+        var months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
+        var curr_date = d.getDate();
+        var curr_month = d.getMonth();
+        curr_month++;
+        var a_p = "";
+        var curr_hour = d.getHours();
+        if (curr_hour < 12){
+          a_p = "AM";
+        } else {
+          a_p = "PM";
+        }
+        if (curr_hour == 0){
+          curr_hour = 12;
+        }
+        if (curr_hour > 12){
+          curr_hour = curr_hour - 12;
+        }
+        var curr_min = d.getMinutes();
+        if(curr_min < 10){
+          curr_min = "0" + curr_min;
+        }
+        var now = (months[curr_month] + " " + curr_date + " " + curr_hour + ":" + curr_min + a_p);
+        // -- Date and time BS over with.
 
         while(index > 0){
           var tweet = streams.home[streams.home.length - 1 - index];
-          $("#content").prepend("<div class=\"tweet\" align=\"left\" style=\"background-color:" + stripe + "\"><h3>@" + tweet.user + "</h3><p>" + tweet.message + "</p></div>");
+          $("#content").prepend("<div class=\"tweet\" align=\"left\" style=\"background-color:" + stripe + "\"><h3>@" + tweet.user + "</h3><p>" + tweet.message + "</p><span style=\"position:relative; top:-48px; right:-340px;\"><i>" + now + "</i></span></div>");
           index -= 1;
           oldTweets += 1;
           if(stripe == "#F4EEF0"){
@@ -31,9 +58,36 @@
 
       $(document).ready(function(){
         var index = streams.home.length - 1;
+
+        // -- Getting and formatting date and time.
+        var d = new Date();
+        var months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
+        var curr_date = d.getDate();
+        var curr_month = d.getMonth();
+        curr_month++;
+        var a_p = "";
+        var curr_hour = d.getHours();
+        if (curr_hour < 12){
+          a_p = "AM";
+        } else {
+          a_p = "PM";
+        }
+        if (curr_hour == 0){
+          curr_hour = 12;
+        }
+        if (curr_hour > 12){
+          curr_hour = curr_hour - 12;
+        }
+        var curr_min = d.getMinutes();
+        if(curr_min < 10){
+          curr_min = "0" + curr_min;
+        }
+        var now = (months[curr_month] + " " + curr_date + " " + curr_hour + ":" + curr_min + a_p);
+        // -- Date and time BS over with.
+
         while(index >= 0){
           var tweet = streams.home[index];
-          $("#content").append("<div class=\"tweet\" align=\"left\" style=\"background-color:" + stripe + "\"><h3>@" + tweet.user + "</h3><p>" + tweet.message + "</p></div>");
+          $("#content").prepend("<div class=\"tweet\" align=\"left\" style=\"background-color:" + stripe + "\"><h3>@" + tweet.user + "</h3><p>" + tweet.message + "</p><span style=\"position:relative; top:-48px; right:-340px;\"><i>" + now + "</i></span></div>");
           index -= 1;
           oldTweets += 1;
           if(stripe == "#F4EEF0"){
