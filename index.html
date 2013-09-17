@@ -3,21 +3,39 @@
   <head>
     <script src="jquery.js"></script>
     <script src="data_generator.js"></script>
-    <link rel="stylesheet" type="text/css" href="twitt.css">
+    <link rel="stylesheet" type="text/css" href="twitt.css" />
+    <link rel="icon" type="image/x-icon" href="res/favicon.ico" />
   </head>
   <body>
     <script>
 
       var stripe = "#D8D8BE"
+      var oldTweets = 0;
+
+      function update(){
+        var index = streams.home.length - 1 - oldTweets;
+        console.log(streams.home.length - 1 + ", " + oldTweets + ", " + index);
+
+        while(index > 0){
+          var tweet = streams.home[streams.home.length - 1 - index];
+          $("#content").prepend("<div class=\"tweet\" align=\"left\" style=\"background-color:" + stripe + "\"><h3>@" + tweet.user + "</h3><p>" + tweet.message + "</p></div>");
+          index -= 1;
+          oldTweets += 1;
+          if(stripe == "#F4EEF0"){
+            stripe = "#D8D8BE";
+          } else {
+            stripe = "#F4EEF0";
+          }
+        }
+      }
 
       $(document).ready(function(){
-        var $body = $("body");
-
         var index = streams.home.length - 1;
         while(index >= 0){
           var tweet = streams.home[index];
-          $("#content").prepend("<div class=\"tweet\" align=\"left\" style=\"background-color:" + stripe + "\"><h3>@" + tweet.user + "</h3><p>" + tweet.message + "</p></div>");
+          $("#content").append("<div class=\"tweet\" align=\"left\" style=\"background-color:" + stripe + "\"><h3>@" + tweet.user + "</h3><p>" + tweet.message + "</p></div>");
           index -= 1;
+          oldTweets += 1;
           if(stripe == "#F4EEF0"){
             stripe = "#D8D8BE";
           } else {
@@ -25,24 +43,33 @@
           }
         }
 
-      });
+        $(".update").click(function(){
+          update();
+        });
 
+        //window.setInterval(update, 300);
+      });
     </script>
     <div class="main" align="left">
-      <div class="title"><img src="logo.png">
+      <div class="title"><img src="res/logo.png">
       </div>
       <div id="sidebar">
         <div class="sidebox">
-          <div class="reload">
-            <h1><span class="green">UP</span>DATE.</h1>
+          <div align="center">
+            <button class="update">
+              <h1><span class="green">UP</span>DATE.</h1>
+            </button>
           </div>
+        </div class="feathers">
+        <div>
         </div>
       </div>
       <div id="content">
       </div>
       <div class="branch">
-        <img src="branch.png">
+        <img src="res/branch.png">
       </div>
     </div>
+    <div align="center"><p>Color scheme taken from <a href="http://rozzers.deviantart.com/art/Colour-Scheme-Challenge-157874684">this</a>.</p></div>
   </body>
 </html>

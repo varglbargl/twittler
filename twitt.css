@@ -1,9 +1,9 @@
-@font-face { font-family: Montserrat; src: url("Montserrat-Regular.ttf"); }
-@font-face { font-family: Montserrat-Bold; src: url("Montserrat-Bold.ttf"); }
+@font-face { font-family: Montserrat; src: url("res/Montserrat-Regular.ttf"); }
+@font-face { font-family: Montserrat-Bold; src: url("res/Montserrat-Bold.ttf"); }
 
 body{
 	font-size: 16px;
-	background-image: url("bg3.png");
+	background-image: url("res/bg3.png");
 	background-repeat: repeat-x;
 	background-color: #F4EEF0;
 	font-family: Arial;
@@ -27,8 +27,29 @@ h3 {
 }
 
 p {
-	font-size: 16px;
-	line-height: 4px;
+	margin: 0px;
+	padding: 0px;
+	color: #1B080C;
+}
+
+a:link {
+	color: #6595DF;
+	text-decoration: none;
+}
+
+a:visited {
+	color: #6595DF;
+	text-decoration: none;
+}
+
+a:hover {
+	color: #6595DF;
+	text-decoration: none;
+}
+
+a:active {
+	color: #6595DF;
+	text-decoration: none;
 }
 
 .green {
@@ -65,6 +86,8 @@ p {
 	padding:22px;
     padding-top:40px;
     border:2px solid #D8D8BE;
+    position:relative;
+
 	box-shadow: inset 0px 0px 0px 20px #664532, inset 0px 0px 0px 22px #D8D8BE;
     -webkit-box-shadow: inset 0px 0px 0px 20px #664532, inset 0px 0px 0px 22px #D8D8BE;
 	-moz-box-shadow: inset 0px 0px 0px 20px #664532, inset 0px 0px 0px 22px #D8D8BE;
@@ -79,6 +102,11 @@ p {
 #sidebar {
 	float:left;
 	width: 252px;
+	position:absolute;
+	bottom: 22px;
+	top: 40px;
+	background-image: url("res/feathers.png");
+	background-repeat: repeat-y;
 }
 
 .sidebox {
@@ -97,4 +125,9 @@ p {
 .tweet {
 	padding: 8px;
 	padding-left: 28px;
+}
+
+.update {
+	background-color: rgba(0, 0, 0, 0);
+	border: 0px;
 }
