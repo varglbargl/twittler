@@ -1,0 +1,100 @@
+@font-face { font-family: Montserrat; src: url("Montserrat-Regular.ttf"); }
+@font-face { font-family: Montserrat-Bold; src: url("Montserrat-Bold.ttf"); }
+
+body{
+	font-size: 16px;
+	background-image: url("bg3.png");
+	background-repeat: repeat-x;
+	background-color: #F4EEF0;
+	font-family: Arial;
+	text-align: center;
+	min-height: 100%;
+}
+
+h1 {
+	font-family: Montserrat-Bold;
+	font-size: 32px;
+	line-height: 0px;
+	color:#664532;
+	text-align: center;
+}
+
+h3 {
+	font-family: Montserrat-Bold;
+	font-size: 18px;
+	line-height: 0px;
+	color:#664532;
+}
+
+p {
+	font-size: 16px;
+	line-height: 4px;
+}
+
+.green {
+	color: #D8D8BE;
+}
+
+.title {
+	margin-left: -236px;
+	display: block;
+	float: left;
+}
+
+.branch {
+	margin-right: -790px;
+	margin-top: 240px;
+	display: block;
+	float: right;
+}
+
+.label {
+	float: right;
+	width: 500px;
+	text-align: center;
+	vertical-align: bottom;
+}
+
+.main {
+	display: inline-block;
+	width: 752px;
+	background-color: #F4EEF0;
+	border-radius: 8px;
+	margin:0 auto;
+    margin-top:-40px;
+	padding:22px;
+    padding-top:40px;
+    border:2px solid #D8D8BE;
+	box-shadow: inset 0px 0px 0px 20px #664532, inset 0px 0px 0px 22px #D8D8BE;
+    -webkit-box-shadow: inset 0px 0px 0px 20px #664532, inset 0px 0px 0px 22px #D8D8BE;
+	-moz-box-shadow: inset 0px 0px 0px 20px #664532, inset 0px 0px 0px 22px #D8D8BE;
+}
+
+.breaker {
+	width: 800px;
+	margin:0px;
+	display:inline-block;
+}
+
+#sidebar {
+	float:left;
+	width: 252px;
+}
+
+.sidebox {
+	margin: 12px;
+	margin-top: 0px;
+	background-color: #6595DF;
+	display: block;
+	padding: 8px;
+}
+
+#content {
+	float: right;
+	width: 500px;
+}
+
+.tweet {
+	padding: 8px;
+	padding-left: 28px;
+}

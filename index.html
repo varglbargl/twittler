@@ -3,25 +3,46 @@
   <head>
     <script src="jquery.js"></script>
     <script src="data_generator.js"></script>
+    <link rel="stylesheet" type="text/css" href="twitt.css">
   </head>
   <body>
     <script>
 
+      var stripe = "#D8D8BE"
+
       $(document).ready(function(){
-        var $body = $('body');
-        $body.html('');
+        var $body = $("body");
 
         var index = streams.home.length - 1;
         while(index >= 0){
           var tweet = streams.home[index];
-          var $tweet = $('<div></div>');
-          $tweet.text('@' + tweet.user + ': ' + tweet.message);
-          $tweet.appendTo($body);
+          $("#content").prepend("<div class=\"tweet\" align=\"left\" style=\"background-color:" + stripe + "\"><h3>@" + tweet.user + "</h3><p>" + tweet.message + "</p></div>");
           index -= 1;
+          if(stripe == "#F4EEF0"){
+            stripe = "#D8D8BE";
+          } else {
+            stripe = "#F4EEF0";
+          }
         }
 
       });
 
     </script>
+    <div class="main" align="left">
+      <div class="title"><img src="logo.png">
+      </div>
+      <div id="sidebar">
+        <div class="sidebox">
+          <div class="reload">
+            <h1><span class="green">UP</span>DATE.</h1>
+          </div>
+        </div>
+      </div>
+      <div id="content">
+      </div>
+      <div class="branch">
+        <img src="branch.png">
+      </div>
+    </div>
   </body>
 </html>
