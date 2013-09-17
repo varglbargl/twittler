@@ -13,14 +13,14 @@
 
       var stripe = "#D8D8BE"
       var oldTweets = 0;
-      var viewingUser = false;
+      var viewTimeline = streams.home;
 
       function update(){
-        var index = streams.home.length - 1 - oldTweets;
+        var index = viewTimeline.length - 1 - oldTweets;
 
         while(index > 0){
-          var tweet = streams.home[streams.home.length - 1 - index];
-          $("#content").prepend("<div class=\"tweet\" align=\"left\" style=\"background-color:" + stripe + "\"><span class=\"timestamp\"><i>" + now(tweet.created_at) + "</i></span><h3>@" + tweet.user + "</h3><p>" + tweet.message + "</p></div>");
+          var tweet = viewTimeline[viewTimeline.length - 1 - index];
+          $("#content").prepend("<div class=\"tweet\" align=\"left\" style=\"background-color:" + stripe + "\"><span class=\"timestamp\"><i>" + now(tweet.created_at) + "</i></span><h3 class=\"" + tweet.user + "\">@" + tweet.user + "</h3><p>" + tweet.message + "</p></div>");
           index -= 1;
           oldTweets += 1;
           if(stripe == "#F4EEF0"){
@@ -29,20 +29,43 @@
             stripe = "#F4EEF0";
           }
         }
+
+        /* Enables viewing of user timeline.
+        ** Gets a bit laggy after the sites been
+        ** open for more than a few minutes.
+        ** Consider adding maximum twit limit to
+        ** shorten the while loop in update().
+        ** Used remove() instead of hide() so
+        ** oldTweets and stripes wouldnt get weird.
+        ** Semi-low priority.
+        */
+
+        $("h3").on("click", function(){
+          var thisName = $(this).attr("class");
+          $(".tweet").remove();
+          viewTimeline = streams.users[thisName];
+          oldTweets = 0;
+          update();
+          $(".viewAll").slideDown("fast");
+        });
+
+        $(".viewAll").on("click", function(){
+          $(".tweet").remove();
+          viewTimeline = streams.home;
+          oldTweets = 0;
+          update();
+          $(".viewAll").slideUp("fast");
+        });
       }
 
       function submit(){
         // -- still working on this.
       }
 
-      function viewUserTimeline(){
-        // -- stil working on this.
-      }
-
       function now(time){
         // -- Gets and formats date and time.
         var dateAndTime = time.toString().split(" ");
-        // dateAndTime = [0 day, 1 month, 2 date, 3 year, 4 time, 5 time correction, (6 Time, 7 Zone, 8 Name)];
+        // dateAndTime = [0 day, 1 month, 2 date, 3 year, 4 time, 5 GMT correction, (6 Time, 7 Zone, 8 Name)];
         var time = dateAndTime[4].split(":");
         if (time[0] > 12){
           time[0] = time[0] - 12;
@@ -58,9 +81,11 @@
 
         update();
 
-        $(".update").click(function(){
+        $(".update").on("click", function(){
           update();
         });
+
+        $(".viewAll").hide();
 
         //window.setInterval(update, 300);
       });
@@ -84,6 +109,7 @@
             <button class="update">
               <h1><span class="green">UP</span>DATE</h1>
             </button>
+            <h2 class="viewAll">View all <span class="green">twits</span></h2>
           </div>
         </div>
         <div class="feathers">

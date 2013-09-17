@@ -1,6 +1,11 @@
 @font-face { font-family: Montserrat; src: url("res/Montserrat-Regular.ttf"); }
 @font-face { font-family: Montserrat-Bold; src: url("res/Montserrat-Bold.ttf"); }
 
+html {
+	overflow-y: scroll;
+	/* prevents page horizontal jerk when scrollbar appears or disappears */
+}
+
 body{
 	font-size: 16px;
 	background-image: url("res/bg3.png");
@@ -19,16 +24,25 @@ h1 {
 	text-align: center;
 }
 
+h2 {
+	font-family: Montserrat-Bold;
+	font-size: 18px;
+	color:#664532;
+	cursor: pointer;
+}
+
 h3 {
 	font-family: Montserrat-Bold;
 	font-size: 18px;
 	line-height: 0px;
 	color:#664532;
+	cursor: pointer;
 }
 
 button {
 	background-color: rgba(0, 0, 0, 0);
 	border: 0px;
+	cursor: pointer;
 }
 
 p {
