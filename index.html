@@ -13,39 +13,14 @@
 
       var stripe = "#D8D8BE"
       var oldTweets = 0;
+      var viewingUser = false;
 
       function update(){
         var index = streams.home.length - 1 - oldTweets;
 
-        // -- Getting and formatting date and time.
-        var d = new Date();
-        var months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
-        var curr_date = d.getDate();
-        var curr_month = d.getMonth();
-        curr_month++;
-        var a_p = "";
-        var curr_hour = d.getHours();
-        if (curr_hour < 12){
-          a_p = "AM";
-        } else {
-          a_p = "PM";
-        }
-        if (curr_hour == 0){
-          curr_hour = 12;
-        }
-        if (curr_hour > 12){
-          curr_hour = curr_hour - 12;
-        }
-        var curr_min = d.getMinutes();
-        if(curr_min < 10){
-          curr_min = "0" + curr_min;
-        }
-        var now = (months[curr_month] + " " + curr_date + " " + curr_hour + ":" + curr_min + a_p);
-        // -- Date and time BS over with.
-
         while(index > 0){
           var tweet = streams.home[streams.home.length - 1 - index];
-          $("#content").prepend("<div class=\"tweet\" align=\"left\" style=\"background-color:" + stripe + "\"><h3>@" + tweet.user + "</h3><p>" + tweet.message + "</p><span style=\"position:relative; top:-48px; right:-340px;\"><i>" + now + "</i></span></div>");
+          $("#content").prepend("<div class=\"tweet\" align=\"left\" style=\"background-color:" + stripe + "\"><span class=\"timestamp\"><i>" + now(tweet.created_at) + "</i></span><h3>@" + tweet.user + "</h3><p>" + tweet.message + "</p></div>");
           index -= 1;
           oldTweets += 1;
           if(stripe == "#F4EEF0"){
@@ -56,46 +31,32 @@
         }
       }
 
-      $(document).ready(function(){
-        var index = streams.home.length - 1;
+      function submit(){
+        // -- still working on this.
+      }
 
-        // -- Getting and formatting date and time.
-        var d = new Date();
-        var months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
-        var curr_date = d.getDate();
-        var curr_month = d.getMonth();
-        curr_month++;
-        var a_p = "";
-        var curr_hour = d.getHours();
-        if (curr_hour < 12){
-          a_p = "AM";
+      function viewUserTimeline(){
+        // -- stil working on this.
+      }
+
+      function now(time){
+        // -- Gets and formats date and time.
+        var dateAndTime = time.toString().split(" ");
+        // dateAndTime = [0 day, 1 month, 2 date, 3 year, 4 time, 5 time correction, (6 Time, 7 Zone, 8 Name)];
+        var time = dateAndTime[4].split(":");
+        if (time[0] > 12){
+          time[0] = time[0] - 12;
+          time = time.join(":") + (" pm");
         } else {
-          a_p = "PM";
+          time = time.join(":") + (" am");
         }
-        if (curr_hour == 0){
-          curr_hour = 12;
-        }
-        if (curr_hour > 12){
-          curr_hour = curr_hour - 12;
-        }
-        var curr_min = d.getMinutes();
-        if(curr_min < 10){
-          curr_min = "0" + curr_min;
-        }
-        var now = (months[curr_month] + " " + curr_date + " " + curr_hour + ":" + curr_min + a_p);
-        // -- Date and time BS over with.
 
-        while(index >= 0){
-          var tweet = streams.home[index];
-          $("#content").prepend("<div class=\"tweet\" align=\"left\" style=\"background-color:" + stripe + "\"><h3>@" + tweet.user + "</h3><p>" + tweet.message + "</p><span style=\"position:relative; top:-48px; right:-340px;\"><i>" + now + "</i></span></div>");
-          index -= 1;
-          oldTweets += 1;
-          if(stripe == "#F4EEF0"){
-            stripe = "#D8D8BE";
-          } else {
-            stripe = "#F4EEF0";
-          }
-        }
+        return dateAndTime[1] + " " + dateAndTime[2] + " " + time;
+      }
+
+      $(document).ready(function(){
+
+        update();
 
         $(".update").click(function(){
           update();
@@ -107,15 +68,25 @@
     <div class="main" align="left">
       <div class="title"><img src="res/logo.png">
       </div>
-      <div id="sidebar">
-        <div class="sidebox">
+      <div id="header">
+        <textarea class="twinput" rows="3" cols="50"></textarea>
+        <div class="bluebox" style="width: 192px;float: right; margin: 6px; margin-right: 32px">
           <div align="center">
-            <button class="update">
-              <h1><span class="green">UP</span>DATE.</h1>
+            <button class="submit">
+              <h1><span class="green">SUB</span>MIT</h1>
             </button>
           </div>
-        </div class="feathers">
-        <div>
+        </div>
+      </div>
+      <div id="sidebar">
+        <div class="bluebox">
+          <div align="center">
+            <button class="update">
+              <h1><span class="green">UP</span>DATE</h1>
+            </button>
+          </div>
+        </div>
+        <div class="feathers">
         </div>
       </div>
       <div id="content">
@@ -124,6 +95,6 @@
         <img src="res/branch.png">
       </div>
     </div>
-    <div align="center"><p>Color scheme taken from <a href="http://rozzers.deviantart.com/art/Colour-Scheme-Challenge-157874684">this</a>.</p></div>
+    <div align="center"><p>Color scheme taken from <a href="http://rozzers.deviantart.com/art/Colour-Scheme-Challenge-157874684">this</a>.</p><h1 style="margin-top:0px">. . .</h1></div>
   </body>
 </html>
