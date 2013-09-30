@@ -11,7 +11,6 @@
 
       var date = new Date
 
-      var stripe = "#D8D8BE"
       var oldTweets = 0;
       var viewTimeline = streams.home;
 
@@ -20,23 +19,17 @@
 
         while(index > 0){
           var tweet = viewTimeline[viewTimeline.length - 1 - index];
-          $("#content").prepend("<div class=\"tweet\" align=\"left\" style=\"background-color:" + stripe + "\"><span class=\"timestamp\"><i>" + now(tweet.created_at) + "</i></span><h3 class=\"" + tweet.user + "\">@" + tweet.user + "</h3><p>" + tweet.message + "</p></div>");
+          $("#content").prepend("<div class=\"tweet\" align=\"left\"><span class=\"timestamp\"><i>" + now(tweet.created_at) + "</i></span><h3 class=\"" + tweet.user + "\">@" + tweet.user + "</h3><p>" + tweet.message + "</p></div>");
           index -= 1;
-          oldTweets += 1;
-          if(stripe == "#F4EEF0"){
-            stripe = "#D8D8BE";
-          } else {
-            stripe = "#F4EEF0";
-          }
         }
 
         /* Enables viewing of user timeline.
-        ** Gets a bit laggy after the sites been
+        ** Gets a bit laggy after the site's been
         ** open for more than a few minutes.
         ** Consider adding maximum twit limit to
         ** shorten the while loop in update().
         ** Used remove() instead of hide() so
-        ** oldTweets and stripes wouldnt get weird.
+        ** oldTweets and stripes wouldn't get weird.
         ** Semi-low priority.
         */
 

@@ -8,8 +8,7 @@ html {
 
 body{
 	font-size: 16px;
-	background-image: url("res/bg3.png");
-	background-repeat: repeat-x;
+	background-image: url("res/bg4.png");
 	background-color: #F4EEF0;
 	font-family: Arial;
 	text-align: center;
@@ -106,10 +105,9 @@ a:active {
     padding-top:40px;
     border:2px solid #D8D8BE;
     position:relative;
-
-	box-shadow: inset 0px 0px 0px 20px #664532, inset 0px 0px 0px 22px #D8D8BE;
     -webkit-box-shadow: inset 0px 0px 0px 20px #664532, inset 0px 0px 0px 22px #D8D8BE;
 	-moz-box-shadow: inset 0px 0px 0px 20px #664532, inset 0px 0px 0px 22px #D8D8BE;
+	box-shadow: inset 0px 0px 0px 20px #664532, inset 0px 0px 0px 22px #D8D8BE;
 }
 
 #header {
@@ -155,12 +153,18 @@ a:active {
 .tweet {
 	padding: 8px;
 	padding-left: 28px;
+	background-color: #D8D8BE;
+}
+
+.tweet:nth-child(even) {
+	background-color: #F4EEF0;
 }
 
 .timestamp {
 	position: relative;
 	display: block;
+	float: right;
 	top: 18px;
-	right: -324px;
+	right: 10px;
 	line-height: 0px
 }
