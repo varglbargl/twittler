@@ -20,7 +20,8 @@
         while(index > 0){
           var tweet = viewTimeline[viewTimeline.length - 1 - index];
           $("#content").prepend("<div class=\"tweet\" align=\"left\"><span class=\"timestamp\"><i>" + now(tweet.created_at) + "</i></span><h3 class=\"" + tweet.user + "\">@" + tweet.user + "</h3><p>" + tweet.message + "</p></div>");
-          index -= 1;
+          index--;
+          oldTweets++;
         }
 
         /* Enables viewing of user timeline.
